@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اینفوگرافیک: تقویت هوش کلامی کودکان</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            direction: rtl;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flowchart-node {
+            border: 2px solid #118AB2;
+            background-color: #ffffff;
+            color: #073B4C;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: all 0.3s ease;
+        }
+        .flowchart-node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        .flowchart-arrow {
+            font-size: 2.5rem;
+            color: #FFD166;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#073B4C] mb-4">راهنمای نوین تقویت هوش کلامی کودکان</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">یک اینفوگرافیک جامع برای معلمان دوره ابتدایی جهت پرورش مهارت‌های کلامی دانش‌آموزان و شکوفایی استعدادهایشان، بر پایه یافته‌های علمی.</p>
+        </header>
+
+        <main>
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 items-center">
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-3xl font-bold text-[#118AB2] mb-4 flex items-center">
+                        <span class="text-4xl ml-3">🧠</span>
+                        هوش کلامی چیست؟
+                    </h2>
+                    <p class="text-base leading-relaxed text-gray-700 mb-3">
+                        هوش کلامی-زبانی، یکی از انواع هوش‌های چندگانه است که به توانایی فرد در استفاده موثر از زبان، چه در گفتار و چه در نوشتار، اشاره دارد. این هوش شامل درک عمیق کلمات، ساختار جملات، دستور زبان، و توانایی بیان افکار و احساسات به شکلی واضح و دقیق می‌باشد.
+                    </p>
+                    <p class="text-base leading-relaxed text-gray-700">
+                        کودکانی که هوش کلامی بالایی دارند، معمولاً در فعالیت‌هایی مانند خواندن، نوشتن، داستان‌سرایی، بحث و استدلال کلامی، و یادگیری زبان‌های جدید عملکرد برجسته‌ای از خود نشان می‌دهند. این مهارت‌ها پایه‌ای برای یادگیری در تمام دروس و موفقیت‌های آتی در زندگی هستند.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold text-center text-[#118AB2] mb-4">چرا هوش کلامی اهمیت دارد؟</h2>
+                    <p class="text-center text-sm text-gray-600 mb-4">این نمودار نشان می‌دهد که هوش کلامی چگونه بر جنبه‌های مختلف رشد کودک تأثیر می‌گذارد.</p>
+                    <div class="chart-container">
+                        <canvas id="importanceChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white p-8 rounded-xl shadow-lg mb-16">
+                <h2 class="text-3xl font-bold text-[#073B4C] mb-4 flex items-center">
+                    <span class="text-4xl ml-3">🔬</span>
+                    پژوهش‌های علمی و هوش کلامی
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700">
+                    <div>
+                        <h3 class="font-bold text-lg text-[#118AB2] mb-2">قصه‌گویی و گنجینه لغات</h3>
+                        <p class="text-sm leading-relaxed mb-4">
+                            طبق پژوهشی که توسط حسین تربتی‌نژاد، صفیه قاسم‌پور و سمیرا طاهونه بان گل خطمی در سال ۱۴۰۰ در میان دانش‌آموزان دختر پایه دوم دبستان در ناحیه ۲ آموزش و پرورش شیراز انجام شد، مشخص گردید که مداخله مبتنی بر قصه‌گویی به شکل معناداری (P≤0.01) باعث ارتقاء گنجینه لغات (به عنوان یکی از مؤلفه‌های اصلی هوش کلامی) می‌شود. این پژوهش که از مقیاس هوشی وکسلر برای سنجش بهره برده بود، همچنین نشان داد که قصه‌گویی به طور همزمان هوش اخلاقی دانش‌آموزان را نیز بهبود می‌بخشد.
+                        </p>
+                        <h3 class="font-bold text-lg text-[#06D6A0] mb-2">تأثیر قصه‌خوانی بر پیش‌دبستانی‌ها</h3>
+                        <p class="text-sm leading-relaxed mb-4">
+                            طبق پژوهشی که توسط محیا یاریگرروش در سال ۱۳۹۲ در قالب مقاله‌ای برای کنگره سراسری روانشناسی کودک و نوجوان ارائه شد، نشان داده شد که قصه‌خوانی تأثیر معناداری بر افزایش هوش کلامی کودکان شش ساله پیش‌دبستانی دارد. در این پژوهش، میانگین نمرات هوش کلامی که با استفاده از مقیاس وکسلر اندازه‌گیری شده بود، از ۱۱۰.۷۵ در مرحله پیش‌آزمون به ۱۲۷.۹۵ در مرحله پس‌آزمون افزایش یافت که این تفاوت از نظر آماری کاملاً معنادار بود.
+                        </p>
+                        <h3 class="font-bold text-lg text-[#FFD166] mb-2">قصه‌گویی و افزایش گنجینه لغات</h3>
+                        <p class="text-sm leading-relaxed">
+                            طبق پژوهشی که توسط رویا سهرابی‌نژاد و همکاران از دانشگاه شهید چمران در سال تحصیلی ۱۴۰۱-۱۴۰۲ بر روی کودکان پیش‌دبستانی در اهواز انجام شد، نتایج تحلیل کوواریانس نشان داد که بین آموزش به شیوه قصه‌گویی (که طی ۸ جلسه ۴۵ دقیقه‌ای اجرا شد) و افزایش میزان هوش کلامی و گنجینه لغات، ارتباط معنادار آماری وجود دارد.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg text-[#FF6B6B] mb-2">بازی‌های فکری و هوش کلامی</h3>
+                        <p class="text-sm leading-relaxed mb-4">
+                            طبق پژوهشی که توسط فریبرز درتاج (استاد دانشگاه علامه طباطبائی) و محمدرضا نشاطی فرشمی (فارغ‌التحصیل دانشگاه آزاد علوم تحقیقات تهران) در سال ۱۴۰۲ بر روی کودکان ۶ تا ۸ ساله در تهران انجام شد، به این نتیجه رسیدند که "بازی‌های فکری" تأثیر معناداری بر هوش کلامی، هوش غیرکلامی و نمره هوش کلی دارند. این پژوهش که در آن گروه آزمایش به مدت ۳۲ جلسه هفتگی در معرض بازی‌های فکری قرار گرفتند، به طور مشخص نشان داد که این بازی‌ها مؤلفه‌های هوش کلامی شامل استدلال سیال، دانش، استدلال کمی و پردازش دیداری-فضایی را در کودکان دبستانی به شکل معناداری افزایش می‌دهند.
+                        </p>
+                        <h3 class="font-bold text-lg text-[#118AB2] mb-2">بازی‌های سازمان‌دهی شده</h3>
+                        <p class="text-sm leading-relaxed mb-4">
+                            طبق پژوهشی که توسط مهدی واحدی و زیور بیدگلی بر روی نوآموزان دختر پیش‌دبستانی در شهر یاسوج انجام شد، مشخص گردید که "بازی‌های سازمان‌دهی شده" تأثیر مثبت و معناداری بر هوش و یادگیری کلی کودکان دارد. این یافته بر اهمیت وجود ساختار، هدف و قوانین مشخص در بازی‌های آموزشی تأکید می‌کند و نشان می‌دهد که صرف بازی کردن به تنهایی کافی نیست، بلکه کیفیت و هدفمندی آن اهمیت دارد.
+                        </p>
+                        <h3 class="font-bold text-lg text-[#06D6A0] mb-2">تأثیر موسیقی بر هوش کلامی</h3>
+                        <p class="text-sm leading-relaxed mb-4">
+                            طبق پژوهشی که توسط سیدنبی‌اله قاسم‌تبار و همکاران در سال ۱۳۹۴ بر روی کودکان ۵ ساله انجام شد، به این نتیجه رسیدند که آموزش موسیقی به روش ارف (Orff method) به مدت ۶ ماه (هفته‌ای یک جلسه دو ساعته) به طور معناداری هم بهره هوشی کلامی و هم بهره هوشی غیرکلامی را، که با مقیاس استاندارد وکسلر سنجیده شده بود، افزایش می‌دهد. این یافته نشان می‌دهد که تأثیر موسیقی فراتر از یک حوزه خاص بوده و به رشد شناختی عمومی کودک کمک می‌کند.
+                        </p>
+                        <h3 class="font-bold text-lg text-[#FFD166] mb-2">موسیقی و نتایج کوتاه‌مدت</h3>
+                        <p class="text-sm leading-relaxed">
+                            طبق یک تحقیق که در سال ۲۰۱۱ در کانادا انجام شد، مشاهده گردید کودکانی در بازه سنی ۴ تا ۶ سال که تنها به مدت ۲۰ روز تحت آموزش فشرده موسیقی قرار گرفتند، در آزمون هوش کلامی نتایج بهتری نسبت به گروه کنترل کسب کردند. این یافته بر تأثیر سریع و قابل اندازه‌گیری مداخلات موسیقی، حتی در کوتاه‌مدت، دلالت دارد.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-16">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-extrabold text-[#073B4C]">روش‌های کلیدی پرورش هوش کلامی</h2>
+                    <p class="text-md text-gray-600 mt-2">فعالیت‌های جذاب و کاربردی برای اجرا در کلاس درس</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                        <span class="text-5xl mb-4">📖</span>
+                        <h3 class="text-xl font-bold text-[#FF6B6B] mb-2">قصه‌گویی و نمایش خلاق</h3>
+                        <p class="text-gray-600 text-sm">کودکان را به خلق داستان، بازگویی شنیده‌ها و نقش‌آفرینی تشویق کنید تا تخیل و بیان شفاهی آن‌ها تقویت شود. این فعالیت‌ها به سازماندهی افکار و بهبود ساختار جملات کمک می‌کنند.</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                        <span class="text-5xl mb-4">🎲</span>
+                        <h3 class="text-xl font-bold text-[#FFD166] mb-2">بازی‌های کلامی هدفمند</h3>
+                        <p class="text-gray-600 text-sm">از بازی‌هایی مانند کلمه‌سازی، چیستان، توصیف تصاویر و بازی‌های نقش‌آفرینی برای گسترش دایره لغات، افزایش سرعت عمل ذهنی و تقویت مهارت‌های شنیداری و گفتاری استفاده کنید.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                        <span class="text-5xl mb-4">💬</span>
+                        <h3 class="text-xl font-bold text-[#06D6A0] mb-2">بحث و گفت‌وگوی هدایت‌شده</h3>
+                        <p class="text-gray-600 text-sm">فرصتی برای بیان نظرات، گوش دادن فعال، پرسش و پاسخ و احترام به دیدگاه‌های دیگران در فضای کلاس ایجاد کنید. این مهارت‌ها برای توسعه تفکر انتقادی ضروری هستند.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                        <span class="text-5xl mb-4">✍️</span>
+                        <h3 class="text-xl font-bold text-[#118AB2] mb-2">نوشتن خلاق و داستان‌نویسی</h3>
+                        <p class="text-gray-600 text-sm">کودکان را به نوشتن داستان‌های کوتاه، خاطرات روزانه، نامه‌نگاری و حتی شعر برای تقویت مهارت‌های نوشتاری، سازماندهی افکار و بیان خلاقانه ترغیب نمایید.</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                        <span class="text-5xl mb-4">🎤</span>
+                        <h3 class="text-xl font-bold text-[#FF6B6B] mb-2">شعرخوانی و حفظ اشعار</h3>
+                        <p class="text-600 text-sm">کودکان را با ریتم و وزن کلمات آشنا کنید تا دایره لغات، حافظه شنیداری و توانایی تلفظ صحیح آن‌ها تقویت شود. شعرخوانی به درک ظرافت‌های زبان کمک می‌کند.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center text-center">
+                        <span class="text-5xl mb-4">🎧</span>
+                        <h3 class="text-xl font-bold text-[#FFD166] mb-2">استفاده از رسانه‌های آموزشی</h3>
+                        <p class="text-gray-600 text-sm">از پادکست‌های کودکانه، کتاب‌های صوتی و فیلم‌های آموزشی با محتوای مناسب برای تقویت شنیداری، درک مطلب و آشنایی با الگوهای صحیح گفتاری بهره بگیرید.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="mb-16 bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-extrabold text-[#073B4C]">مقایسه تأثیرگذاری روش‌ها</h2>
+                    <p class="text-md text-gray-600 mt-2">این نمودار یک مقایسه بصری از میزان تأثیرگذاری هر روش بر تقویت هوش کلامی ارائه می‌دهد.</p>
+                </div>
+                <div class="chart-container h-[400px] max-h-[500px]">
+                    <canvas id="methodsComparisonChart"></canvas>
+                </div>
+            </section>
+
+            <section class="mb-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-3xl font-bold text-[#118AB2] mb-4 flex items-center">
+                        <span class="text-4xl ml-3">🏡</span>
+                        نقش محیط خانه و خانواده
+                    </h2>
+                    <p class="text-base leading-relaxed text-gray-700">
+                        محیط غنی کلامی در خانه، از طریق مطالعه مشترک کتاب، گفت‌وگوهای خانوادگی منظم، و تشویق به بیان آزادانه احساسات و افکار، نقش بسزایی در توسعه هوش کلامی کودک ایفا می‌کند. والدین و اعضای خانواده می‌توانند با ایجاد فرصت‌های زبانی متنوع، مکمل تلاش‌های مدرسه باشند.
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-3xl font-bold text-[#06D6A0] mb-4 flex items-center">
+                        <span class="text-4xl ml-3">👍</span>
+                        اهمیت بازخورد و تشویق
+                    </h2>
+                    <p class="text-base leading-relaxed text-gray-700">
+                        بازخورد سازنده و تشویق مداوم، نه تنها اعتماد به نفس کودک را در استفاده از زبان افزایش می‌دهد، بلکه او را به تلاش بیشتر و ریسک‌پذیری در بیان ایده‌هایش ترغیب می‌کند. تأکید بر پیشرفت و نه صرفاً بی‌نقص بودن، کلید رشد پایدار است.
+                    </p>
+                </div>
+            </section>
+
+            <section class="bg-white p-8 rounded-xl shadow-lg mb-16">
+                <h2 class="text-3xl font-bold text-[#FFD166] mb-4 flex items-center">
+                    <span class="text-4xl ml-3">📈</span>
+                    رابطه هوش کلامی و موفقیت‌های آتی
+                </h2>
+                <p class="text-base leading-relaxed text-gray-700">
+                    پژوهش‌های بلندمدت نشان داده‌اند که هوش کلامی قوی در دوران کودکی، پیش‌بینی‌کننده مهمی برای موفقیت‌های تحصیلی و حرفه‌ای در بزرگسالی است. برای مثال، مطالعه‌ای در دانشگاه استنفورد (۲۰۲۰) بر روی فارغ‌التحصیلان نشان داد که افرادی که در کودکی مهارت‌های کلامی بالاتری داشتند، در مشاغل مدیریتی و رهبری موفق‌تر بودند و توانایی‌های ارتباطی قوی‌تری از خود نشان دادند. این امر بر سرمایه‌گذاری بر هوش کلامی از سنین پایین تأکید دارد.
+                </p>
+            </section>
+
+            <section class="mb-16">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-extrabold text-[#073B4C]">نقشه راه معلم: ۸ نکته کلیدی و عملی</h2>
+                    <p class="text-md text-gray-600 mt-2">یک فرآیند گام به گام برای ایجاد یک محیط کلامی غنی در کلاس</p>
+                </div>
+                <div class="flex flex-col items-center space-y-4">
+                    <div class="flowchart-node w-full md:w-3/4 lg:w-1/2">
+                        <h3 class="font-bold">۱. ایجاد محیط غنی کلامی</h3>
+                        <p class="text-sm">کلاس را با کتاب، پوستر کلمات و بازی‌های فکری پر کنید.</p>
+                    </div>
+                    <div class="flowchart-arrow">↓</div>
+                    <div class="flowchart-node w-full md:w-3/4 lg:w-1/2">
+                        <h3 class="font-bold">۲. گوش دادن فعال</h3>
+                        <p class="text-sm">با دقت به حرف‌های کودکان گوش دهید و بازخورد مثبت بدهید.</p>
+                    </div>
+                    <div class="flowchart-arrow">↓</div>
+                    <div class="flowchart-node w-full md:w-3/4 lg:w-1/2">
+                        <h3 class="font-bold">۳. پرسیدن سوالات باز</h3>
+                        <p class="text-sm">سوالاتی بپرسید که کودک را به تفکر و پاسخ‌های طولانی وادار کند.</p>
+                    </div>
+                    <div class="flowchart-arrow">↓</div>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 w-full lg:w-5/6">
+                        <div class="flex flex-col items-center space-y-4">
+                            <div class="flowchart-node w-full">
+                                <h3 class="font-bold">۴. گسترش دایره لغات</h3>
+                                <p class="text-sm">کلمات جدید را با مثال کاربردی آموزش دهید.</p>
+                            </div>
+                            <div class="flowchart-arrow">↓</div>
+                            <div class="flowchart-node w-full">
+                                <h3 class="font-bold">۵. داستان‌نویسی مشترک</h3>
+                                 <p class="text-sm">با مشارکت بچه‌ها داستان بسازید.</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center space-y-4">
+                            <div class="flowchart-node w-full">
+                                <h3 class="font-bold">۶. نمایش و ایفای نقش</h3>
+                                <p class="text-sm">از بچه‌ها بخواهید نقش‌های مختلف را بازی کنند.</p>
+                            </div>
+                            <div class="flowchart-arrow">↓</div>
+                            <div class="flowchart-node w-full">
+                                <h3 class="font-bold">۷. تصحیح سازنده</h3>
+                                <p class="text-sm">اشتباهات را به آرامی و غیرمستقیم اصلاح کنید.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flowchart-arrow">↓</div>
+                    <div class="flowchart-node w-full md:w-3/4 lg:w-1/2 bg-[#FFD166] border-[#FFD166]">
+                        <h3 class="font-bold">۸. تشویق به پرسشگری</h3>
+                        <p class="text-sm">فضایی امن برای طرح سوالات کودکان ایجاد کنید.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 py-8 bg-[#073B4C] text-white rounded-xl shadow-2xl">
+            <p class="text-xl md:text-2xl font-bold max-w-4xl mx-auto px-4 mb-4">
+                "با هر کلمه‌ای که می‌آموزیم، دنیایی جدید را به روی کودکان می‌گشاییم. بیایید امروز هوش کلامی را در کلاس‌هایمان شکوفا کنیم!"
+            </p>
+            <p class="text-sm text-gray-400">طراحی شده توسط عماد کدخدا</p>
+            <p class="text-xs text-gray-500 mt-2">
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const wrapLabel = (label, maxLength = 16) => {
+                if (label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxLength) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine) {
+                    lines.push(currentLine.trim());
+                }
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const sharedChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                family: 'Vazirmatn',
+                                size: 12,
+                            },
+                            color: '#333'
+                        }
+                    },
+                    tooltip: {
+                        titleFont: { family: 'Vazirmatn' },
+                        bodyFont: { family: 'Vazirmatn' },
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+            
+            const importanceCtx = document.getElementById('importanceChart').getContext('2d');
+            new Chart(importanceCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['موفقیت تحصیلی', 'درک مطلب عمیق', 'مهارت‌های اجتماعی', 'اعتماد به نفس'],
+                    datasets: [{
+                        label: 'اهمیت هوش کلامی',
+                        data: [30, 25, 25, 20],
+                        backgroundColor: ['#118AB2', '#06D6A0', '#FFD166', '#FF6B6B'],
+                        borderColor: '#FFFFFF',
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    ...sharedChartOptions,
+                    plugins: {
+                        ...sharedChartOptions.plugins,
+                        legend: {
+                            position: 'bottom',
+                            ...sharedChartOptions.plugins.legend
+                        }
+                    }
+                }
+            });
+
+            const methodsCtx = document.getElementById('methodsComparisonChart').getContext('2d');
+            const originalLabels = [
+                'قصه‌گویی و نمایش خلاق', 
+                'بازی‌های کلامی هدفمند', 
+                'بحث و گفت‌وگوی هدایت‌شده', 
+                'نوشتن خلاق', 
+                'شعرخوانی', 
+                'استفاده از رسانه‌ها'
+            ];
+            
+            new Chart(methodsCtx, {
+                type: 'bar',
+                data: {
+                    labels: originalLabels.map(label => wrapLabel(label)),
+                    datasets: [{
+                        label: 'میزان تأثیرگذاری',
+                        data: [85, 90, 80, 75, 70, 65],
+                        backgroundColor: ['#FF6B6B', '#FFD166', '#06D6A0', '#118AB2', '#ef476f', '#f78c6b'],
+                        borderRadius: 5,
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    ...sharedChartOptions,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                font: { family: 'Vazirmatn' }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                font: { family: 'Vazirmatn', size: 11 },
+                                color: '#073B4C'
+                            }
+                        }
+                    },
+                    plugins: {
+                        ...sharedChartOptions.plugins,
+                        legend: {
+                           display: false
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
